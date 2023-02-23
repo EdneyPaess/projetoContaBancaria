@@ -1,7 +1,8 @@
 package conta.model;
 
-public class Conta {
-	private int numero;
+public abstract class Conta {
+    
+    private int numero;
 	private int agencia;
 	private int tipo;
 	private String titular;
@@ -13,17 +14,8 @@ public class Conta {
 		this.tipo = tipo;
 		this.titular = titular;
 		this.saldo = saldo;
-		// a palavra reservada this foi usada para diferenciar o Atributo da Classe
-		// Conta do parâmetro do Método Construtor da Classe Conta.
-		// this.numero Diferenciar os Atributos da classe
-		// = numero; Parâmetro do método Construtor
-
-		// com isso os valores atribuidos aos parametros do método construtor, será
-		// passado para os atributos da classe
-
 	}
 
-	// Métodos get e set
 	public int getNumero() {
 		return numero;
 	}
@@ -64,41 +56,43 @@ public class Conta {
 		this.saldo = saldo;
 	}
 
-	// método sacar
 	public boolean sacar(float valor) {
-		if (this.getSaldo() < valor) {
-			System.out.println("\n Saldo Insuficiente!");
+		
+		if(this.getSaldo() < valor) {
+			System.out.println("Saldo Insuficiente!");
 			return false;
 		}
+		
 		this.setSaldo(this.getSaldo() - valor);
 		return true;
+		
 	}
-
-	// método depositar
+	
 	public void depositar(float valor) {
 		this.setSaldo(this.getSaldo() + valor);
 	}
-
-	// Método visualizar
+	
 	public void visualizar() {
-		String tipo = " ";
 
-		switch (this.tipo) {
+		String tipo = "";
+		
+		switch(this.tipo) {
 		case 1:
 			tipo = "Conta Corrente";
-			break;
+		break;
 		case 2:
 			tipo = "Conta Poupança";
-			break;
+		break;
 		}
-		System.out.println("\n\n*********************************************************** ");
-		System.out.println("Dados da conta: ");
-		System.out.println("\n\n*********************************************************** ");
-		System.out.println("Numero da Conta: "+this.numero);
-		System.out.println("Agência: "+this.agencia);
-		System.out.println("Tipo da Conta: "+tipo);
-		System.out.println("Titular: "+this.titular);
-		System.out.println("Saldo: "+this.saldo);
 		
+		System.out.println("\n\n***********************************************************");
+		System.out.println("Dados da Conta:");
+		System.out.println("***********************************************************");
+		System.out.println("Numero da Conta: " + this.numero);
+		System.out.println("Agência: " + this.agencia);
+		System.out.println("Tipo da Conta: " + tipo);
+		System.out.println("Titular: " + this.titular);
+		System.out.println("Saldo: " + this.saldo);
 	}
+    
 }
